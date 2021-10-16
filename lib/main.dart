@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 void main() {
   runApp(MaterialApp(
     title: "Bmi Calculator",
+    debugShowCheckedModeBanner: false,
     home: Scaffold(
       body: Home(),
     ),

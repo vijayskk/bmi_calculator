@@ -11,8 +11,18 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int text = 0;
-  int height = 0;
-  int weight = 0;
+  double height = 0;
+  double weight = 0;
+  int calculateBMI(double thisheight, double thisweight) {
+    if (thisheight == 0 || thisweight == 0) {
+      return 0;
+    } else {
+      double heightinm = thisheight/100;
+      double heightSquare = heightinm * heightinm;
+      double result = thisweight / heightSquare;
+      return result.round();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -85,7 +95,8 @@ class _HomeState extends State<Home> {
                       child: TextFormField(
                         onChanged: (String value) {
                           setState(() {
-                            weight = int.parse(value);
+                            weight = double.parse(value);
+                            height = height;
                           });
                         },
                         cursorColor: Colors.black,
@@ -126,7 +137,8 @@ class _HomeState extends State<Home> {
                       child: TextFormField(
                         onChanged: (String value) {
                           setState(() {
-                            height = int.parse(value);
+                            height = double.parse(value);
+                            weight = weight;
                           });
                         },
                         cursorColor: Colors.black,
@@ -171,7 +183,8 @@ class _HomeState extends State<Home> {
                 Padding(
                   padding: const EdgeInsets.only(top: 40),
                   child: Text(
-                    "140",
+                    calculateBMI(weight, height).toString(),
+                    overflow: TextOverflow.fade,
                     style: TextStyle(
                       fontFamily: "Display Font",
                       fontSize: 50,
