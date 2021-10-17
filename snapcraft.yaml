@@ -1,0 +1,28 @@
+name: bmi-calculator
+version: 0.1.0
+summary: A simple Bmi Calculator
+description: A simple Body mass index calculator
+
+confinement: strict
+base: core18
+grade: stable
+
+slots:
+  dbus-bmi-calculator: # adjust accordingly to your app name
+    interface: dbus
+    bus: session
+    name: org.bar.bmi_calculator # adjust accordingly to your app name and
+    
+apps:
+  bmi-calculator:
+    command: bmi_calculator
+    extensions: [flutter-master] # Where "master" defines which Flutter channel to use for the build
+    plugs:
+    - network
+    slots:
+      - dbus-bmi-calculator
+parts:
+  bmi-calculator:
+    source: .
+    plugin: flutter
+    flutter-target: lib/main.dart # The main entry-point file of the application

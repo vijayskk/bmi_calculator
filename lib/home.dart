@@ -17,7 +17,7 @@ class _HomeState extends State<Home> {
     if (thisheight == 0 || thisweight == 0) {
       return 0;
     } else {
-      double heightinm = thisheight/100;
+      double heightinm = thisheight / 100;
       double heightSquare = heightinm * heightinm;
       double result = thisweight / heightSquare;
       return result.round();
@@ -94,10 +94,17 @@ class _HomeState extends State<Home> {
                       width: MediaQuery.of(context).size.width * 0.4,
                       child: TextFormField(
                         onChanged: (String value) {
-                          setState(() {
-                            weight = double.parse(value);
-                            height = height;
-                          });
+                          if (value == "") {
+                            setState(() {
+                              weight = 0;
+                              height = 0;
+                            });
+                          } else {
+                            setState(() {
+                              weight = double.parse(value);
+                              height = height;
+                            });
+                          }
                         },
                         cursorColor: Colors.black,
                         textAlign: TextAlign.center,
@@ -136,10 +143,17 @@ class _HomeState extends State<Home> {
                       width: MediaQuery.of(context).size.width * 0.4,
                       child: TextFormField(
                         onChanged: (String value) {
-                          setState(() {
-                            height = double.parse(value);
-                            weight = weight;
-                          });
+                          if (value == "") {
+                            setState(() {
+                              weight = 0;
+                              height = 0;
+                            });
+                          } else {
+                            setState(() {
+                              height = double.parse(value);
+                              weight = weight;
+                            });
+                          }
                         },
                         cursorColor: Colors.black,
                         textAlign: TextAlign.center,
